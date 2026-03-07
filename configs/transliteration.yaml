@@ -1,0 +1,78 @@
+## Model and Embeddings
+model_type: transformer
+encoder_type: transformer
+decoder_type: transformer
+
+# Transformer parameters (small, suitable for character-level transliteration)
+enc_layers: 4
+dec_layers: 4
+heads: 4
+hidden_size: 256
+transformer_ff: 1024
+dropout: [0.1]
+attention_dropout: [0.1]
+
+# Embeddings
+src_word_vec_size: 256
+tgt_word_vec_size: 256
+position_encoding: true
+share_embeddings: true
+
+## Data Configuration
+data:
+  corpus_1:
+    path_src: data/processed/src-train.txt
+    path_tgt: data/processed/tgt-train.txt
+    transforms: [filtertoolong]
+    weight: 1
+  valid:
+    path_src: data/processed/src-val.txt
+    path_tgt: data/processed/tgt-val.txt
+    transforms: [filtertoolong]
+
+# Vocabulary
+src_vocab: models/vocab.src
+tgt_vocab: models/vocab.tgt
+share_vocab: true
+src_vocab_size: 5000
+tgt_vocab_size: 5000
+
+# Filtering
+src_seq_length: 150
+tgt_seq_length: 150
+
+## Training Hyperparameters
+batch_size: 4096
+batch_type: tokens
+valid_batch_size: 2048
+max_generator_batches: 2
+accum_count: [4]
+accum_steps: [0]
+
+# Optimization
+optim: adam
+adam_beta1: 0.9
+adam_beta2: 0.998
+learning_rate: 2.0
+warmup_steps: 4000
+decay_method: noam
+label_smoothing: 0.1
+max_grad_norm: 0
+
+# Training control
+train_steps: 30000
+valid_steps: 1000
+save_checkpoint_steps: 5000
+keep_checkpoint: 5
+
+# Logging
+report_every: 100
+log_file: models/train.log
+
+# Model saving
+save_model: models/transliteration_model
+
+# GPU settings (set to -1 for CPU, 0 for first GPU)
+# Override with --gpu_ranks when running
+world_size: 1
+gpu_ranks: [0]

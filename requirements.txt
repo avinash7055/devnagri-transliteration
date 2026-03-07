@@ -1,0 +1,23 @@
+# Multilingual Transliteration Model - Requirements
+# Core ML Framework
+OpenNMT-py>=3.0
+torch>=2.0.0
+
+# Dataset
+datasets>=2.14.0
+huggingface-hub>=0.16.0
+
+# CTranslate2 Optimization
+ctranslate2>=4.0.0
+
+# Evaluation Metrics
+editdistance>=0.6.0
+jiwer>=3.0.0
+
+# Deployment
+gradio>=4.0.0
+
+# Utilities
+tqdm>=4.65.0
+pandas>=2.0.0
+numpy>=1.24.0
