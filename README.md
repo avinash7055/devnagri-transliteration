@@ -33,7 +33,7 @@ A character-level Transformer model that transliterates English/Romanized text i
 
 ## 🎮 Demo
 
-**🌐 Live Demo**: [https://huggingface.co/spaces/avinash7055/devnagri-transliteration](https://huggingface.co/spaces/avinash7055/devnagri-transliteration)
+**🌐 Live Demo**: [https://huggingface.co/spaces/avi705/devnagri-transliteration](https://huggingface.co/spaces/avi705/devnagri-transliteration)
 
 Run the Gradio demo locally:
 
@@ -85,7 +85,8 @@ devnagri/
 │   └── benchmark.py                    # Speed/size/quality benchmarking
 │
 ├── deploy/
-│   ├── app.py                          # Gradio demo application
+│   ├── app.py                          # Gradio demo application (local)
+│   ├── app_hf.py                       # Hugging Face Spaces version
 │   └── requirements.txt                # HF Spaces requirements
 │
 └── docs/
@@ -321,12 +322,32 @@ Options:
 
 ### Deploy to Hugging Face Spaces
 
-1. Create a new Space on [huggingface.co/spaces](https://huggingface.co/spaces)
-2. Upload these files:
-   - `deploy/app.py`
-   - `deploy/requirements.txt`
-   - `models/ct2_model/` (entire directory)
-3. The app auto-deploys on the free CPU tier
+The live demo is deployed at: [huggingface.co/spaces/avi705/devnagri-transliteration](https://huggingface.co/spaces/avi705/devnagri-transliteration)
+
+To deploy your own:
+
+1. Create a new Gradio Space on [huggingface.co/new-space](https://huggingface.co/new-space)
+2. Clone the Space repository:
+   ```bash
+   git clone https://huggingface.co/spaces/YOUR_USERNAME/YOUR_SPACE
+   cd YOUR_SPACE
+   ```
+3. Copy the required files:
+   ```bash
+   cp deploy/app_hf.py YOUR_SPACE/app.py
+   cp deploy/requirements.txt YOUR_SPACE/
+   cp -r models/ct2_model YOUR_SPACE/
+   ```
+4. Track the model binary with Git LFS, commit, and push:
+   ```bash
+   cd YOUR_SPACE
+   git lfs install
+   git lfs track "ct2_model/model.bin"
+   git add -A
+   git commit -m "Deploy transliteration app"
+   git push
+   ```
+5. The app auto-deploys on the free CPU tier
 
 ---
 
