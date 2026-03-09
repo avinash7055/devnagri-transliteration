@@ -33,6 +33,8 @@ A character-level Transformer model that transliterates English/Romanized text i
 
 ## 🎮 Demo
 
+**🌐 Live Demo**: [https://huggingface.co/spaces/avinash7055/devnagri-transliteration](https://huggingface.co/spaces/avinash7055/devnagri-transliteration)
+
 Run the Gradio demo locally:
 
 ```bash
@@ -103,8 +105,8 @@ devnagri/
 
 ```bash
 # Clone the repo
-git remote add origin https://github.com/avinash7055/devnagri-transliteration.git
-cd devnagri
+git clone https://github.com/avinash7055/devnagri-transliteration.git
+cd devnagri-transliteration
 
 # Create virtual environment
 python -m venv venv
